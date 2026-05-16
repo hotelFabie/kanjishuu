@@ -182,3 +182,30 @@
     border-right-color: var(--border);
   }
 }
+
+/*content seems to be incredibly important, but can we change it ourselves?*/
+/*utilize this resource: https://stackoverflow.com/questions/27258880/changing-css-content-property-dynamically*/
+
+.leveltoggle {
+  display: inline-block;
+  position: relative;
+}
+
+.leveltoggle input[type='checkbox'] + label::before {
+  width: 50px;
+  height: 25px;
+  background: lime;
+  border-color: white;
+  border-radius: 20px;
+  content: ''; 
+  display: inline-block;
+}
+
+.leveltoggle input[type='checkbox']:checked + label::after {
+  width: 50px;
+  height: 25px;
+  background: white;
+  border-radius: 20px;
+  content: '';
+  display: inline-block;
+}

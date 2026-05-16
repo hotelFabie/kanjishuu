@@ -42,21 +42,26 @@ export default function ButtonArea({levels, setLevels, fetchWordsFromChosenLevel
     
     return (
         <>
-            <label id="leveltoggle">
-                <input type="checkbox" onClick={() => toggleLevel(1)} />N1
-            </label>
-            <label id="leveltoggle">
-                <input type="checkbox" onClick={() => toggleLevel(2)} />N2
-            </label>
-            <label id="leveltoggle">
-                <input type="checkbox" onClick={() => toggleLevel(3)} />N3
-            </label>
-            <label id="">
-                <input type="checkbox" onClick={() => toggleLevel(4)} />N4
-            </label>
-            <label id="leveltoggle">
-                <input type="checkbox" onClick={() => toggleLevel(5)} />N5
-            </label>
+            <div className="leveltoggle">
+                <input type="checkbox" onClick={() => toggleLevel(1)} />
+                <label>N1</label>
+            </div>
+            <div className="leveltoggle">
+                <input type="checkbox" onClick={() => toggleLevel(2)} />
+                <label>N2</label>
+            </div>
+            <div className="leveltoggle">
+                <input type="checkbox" onClick={() => toggleLevel(3)} />
+                <label>N3</label>
+            </div>
+            <div className="leveltoggle">
+                <input type="checkbox" onClick={() => toggleLevel(4)} />
+                <label>N4</label>
+            </div>
+            <div className="leveltoggle">
+                <input type="checkbox" onClick={() => toggleLevel(5)} />
+                <label>N5</label>
+            </div>
 
             <button onClick={() => fetchWordsFromChosenLevels(levels)}>start!</button>
         </>

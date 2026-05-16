@@ -131,8 +131,3 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
-
-/*not seeing any reason why this shouldn't be global (YET), so...*/
-.leveltoggle {
-  
-}
