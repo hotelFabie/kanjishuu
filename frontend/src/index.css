@@ -32,6 +32,7 @@
   }
 }
 
+/*presuming this is the area where these var():s are declared.*/
 @media (prefers-color-scheme: dark) {
   :root {
     --text: #9ca3af;
@@ -66,12 +67,18 @@
 
 body {
   margin: 0;
-  background-color: rgb(51, 22, 74);
+  background-color: #040052;
+  align-items: center;
+  display: flex;
 }
 
-/*i need some more personal customization here.*/
+/*i need some more personal customization here.
+interesting that you can do like &:hover within this.
+it could be nice in order to do an animation?
+
+for some reason, the buttons are moved to the side.
+*/
 button {
-  font-family: var(--sans);
   font-size: 16px;
   line-height: 135%;
   color: var(--text-h);
@@ -81,17 +88,15 @@ button {
   padding: 6px 12px;
   cursor: pointer;
   transition: box-shadow 0.3s;
-
-  &:hover {
-    box-shadow: var(--shadow); /*should be nothing here.*/
-  }
+  width: 20%;
 }
 
+/*could be something else*/
 h1,
 h2 {
+  color: #f2ff00;
   font-family: var(--heading);
   font-weight: 500;
-  color: var(--text-h);
 }
 
 h1 {
@@ -112,22 +117,12 @@ h2 {
     font-size: 20px;
   }
 }
+
+/*can probably be changed*/
+h3 {
+  color: #f2ff00;
+}
+
 p {
   margin: 0;
-}
-
-/*i most likely do not need these. */
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
 }

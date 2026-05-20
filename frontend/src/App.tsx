@@ -55,15 +55,15 @@ function App() {
     })
   }
   
+/*this will probably disappear later, we just wanted to ensure output.*/
+
   return (
     <>
       <Menu />
       <ButtonArea levels={levels} setLevels={setLevels} fetchWordsFromChosenLevels={fetchWordsFromChosenLevels} />
-      <ul>
         {words.map((word : any, index) => (
-          <li key={index}>{word.word}</li>
+          <p key={index}>{word.word}</p>
         ))}
-      </ul>
     </>
   )
 }
