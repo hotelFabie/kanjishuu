@@ -15,14 +15,18 @@ export default function ButtonArea({levels, setLevels, fetchWordsFromChosenLevel
         }
     }
 
-    /*you cannot use the same id multiple times, so i will have to do something about this*/
     return (
         <>
-            <button className="levelToggle" onClick={() => toggleLevel(1)} style={{backgroundColor: levels.includes(1) ? "selectedLevel" : ""}}>N1</button>
-            <button className="levelToggle" onClick={() => toggleLevel(2)} style={{backgroundColor: levels.includes(2) ? "selectedLevel" : ""}}>N2</button>
-            <button className="levelToggle" onClick={() => toggleLevel(3)} style={{backgroundColor: levels.includes(3) ? "selectedLevel" : ""}}>N3</button>
-            <button className="levelToggle" onClick={() => toggleLevel(4)} style={{backgroundColor: levels.includes(4) ? "selectedLevel" : ""}}>N4</button>
-            <button className="levelToggle" onClick={() => toggleLevel(5)} style={{backgroundColor: levels.includes(5) ? "selectedLevel" : ""}}>N5</button>
+            <label className="toggle">
+                <input type="checkbox" onClick={() => toggleLevel(1)}></input>
+                <span>N1</span>
+            </label>
+
+            <button className="levelToggle" onClick={() => toggleLevel(1)}>N1</button>
+            <button className="levelToggle" onClick={() => toggleLevel(2)}>N2</button>
+            <button className="levelToggle" onClick={() => toggleLevel(3)}>N3</button>
+            <button className="levelToggle" onClick={() => toggleLevel(4)}>N4</button>
+            <button className="levelToggle" onClick={() => toggleLevel(5)}>N5</button>
 
             <button onClick={() => fetchWordsFromChosenLevels(levels)}>start!</button>
         </>

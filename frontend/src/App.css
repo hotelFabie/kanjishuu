@@ -1,40 +1,26 @@
-/*content seems to be incredibly important, but can we change it ourselves?*/
-/*utilize this resource: https://stackoverflow.com/questions/27258880/changing-css-content-property-dynamically*/
-
-/*note to self: this does not mean before and after it is pressed, it means 
-"place this before and after the label"*/
-
-/*as such, i am removing these for the moment, and just storing them here:
-label::before
-label::after...
-does it even matter that we have the empty content bars, like we do right now?*/
-
-/*should add some hovers here as well, to mark.
-or a transition.*/
-
-/* legacy, should be discarded:
-.leveltoggle input[type='checkbox'] + label {
-  width: 50px;
-  height: 25px;
-  background: #bbb8ff;
+/*wip: add border width*/
+.toggle {
+  background-color: #f2ff00;
   border-radius: 10px;
-  color: #040052;
-  content: ''; 
-  display: inline-block;
-  transition: ease-in-out 0.3s;
+  display: inline-block; 
+  height: 25px;
+  position: relative;
+  transition: ease-in-out 0.25s;
+  width: 100px;
+  text-align: center;
 }
 
-.leveltoggle input[type='checkbox']:checked + label {
-  width: 50px;
-  height: 25px;
-  background: #f2ff00;
-  border-radius: 10px;
-  content: '';
-  display: inline-block;
+.toggle input {
+  height: 0;
+  opacity: 0;
+  width: 0;
 }
-*/
 
-/*wip: add border width + does this follow naming convention?*/
+/*it is essentially the color switch that is only remaining*/
+.toggle + input:checked {
+  background-color: white;
+}
+
 #levelToggle {
   font-family: var(--sans);
   width: 50px;
@@ -45,8 +31,4 @@ or a transition.*/
   content: ''; 
   transition: ease-in-out 0.3s;
   padding: 10px;
-}
-
-.selectedLevel {
-  background: #f2ff00;
 }

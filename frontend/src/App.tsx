@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './App.css'
 import Menu from './components/Menu.tsx';
 import ButtonArea from './components/ButtonArea.tsx';
@@ -10,7 +10,6 @@ type ResponseData = {
   words : Word[];
 }
 
-//move up.
 type Word = {
   word : string;
   meaning: string;
@@ -19,43 +18,27 @@ type Word = {
   level : number;
 }
 
-//do i have reason to store this outside?
+//arguable if i should store this outside.
 let allWords : Word[] = [];
 
 function App() {
   const [words, setWords] = useState<Word[]>([]); 
   const [levels, setLevels] = useState<number[]>([5]); 
-  
-  //this will be deprecated, i just keep it here until i know the function works.
-  /*
-  useEffect(() => {
-    fetch(`https://jlpt-vocab-api.vercel.app/api/words?level=${level}`)
-      .then(response => response.json())
-      .then(data => {
-        console.log("API Response:", data);
-        console.log(typeof data);
-        console.log(Array.isArray(data));
-        setWords(data.words);
-      })
-  }, [level]);
-  */
 
-  //wip: add proper logging.
-  //should provide an error/message if nothing is given. 
-  //concatenation, because we want a new, mixed array.
+  //possibly: further logging if so needed.
+  //dealing with errors?
   function fetchWordsFromChosenLevels(chosenLevels: number[]) {
     console.log("Chosen levels:", chosenLevels);
     chosenLevels.forEach(level => {
       fetch(`https://jlpt-vocab-api.vercel.app/api/words?level=${level}`)
         .then(response => response.json())
         .then((data: ResponseData) => {
+          console.log("Response from API: ", data);
           allWords = allWords.concat(data.words); 
           setWords(allWords);
         })
     })
   }
-  
-/*this will probably disappear later, we just wanted to ensure output.*/
 
   return (
     <>
