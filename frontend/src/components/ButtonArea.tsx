@@ -21,6 +21,8 @@ export default function ButtonArea({levels, setLevels, fetchWordsFromChosenLevel
     /*it renders from top to bottom, so the <span> of course needs to come after the input so it lands on top.*/
     /*label, with the text being represented through <span> (a generic, it actually takes it as an acceptable alternative),
     so that we can customize it later on.*/
+
+    /*wip: adjust the lower button, also apply nicer styling*/
     return (
         <>
             <label>
