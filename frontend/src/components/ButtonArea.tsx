@@ -10,23 +10,39 @@ export default function ButtonArea({levels, setLevels, fetchWordsFromChosenLevel
     function toggleLevel(level: number) {
         if (levels.includes(level)) {
             setLevels(levels.filter(l => l !== level));
+            console.log(`button pressed: level ${level} turned off.`);
         } else {
             setLevels([...levels, level]);
+            console.log(`button pressed: level ${level} turned on.`);
         }
+        
     }
 
+    /*it renders from top to bottom, so the <span> of course needs to come after the input so it lands on top.*/
+    /*label, with the text being represented through <span> (a generic, it actually takes it as an acceptable alternative),
+    so that we can customize it later on.*/
     return (
         <>
-            <label className="toggle">
-                <input type="checkbox" onClick={() => toggleLevel(1)}></input>
-                <span>N1</span>
+            <label>
+                <input type="checkbox" onChange={() => toggleLevel(1)}></input>
+                <span className="toggle">N1</span>
             </label>
-
-            <button className="levelToggle" onClick={() => toggleLevel(1)}>N1</button>
-            <button className="levelToggle" onClick={() => toggleLevel(2)}>N2</button>
-            <button className="levelToggle" onClick={() => toggleLevel(3)}>N3</button>
-            <button className="levelToggle" onClick={() => toggleLevel(4)}>N4</button>
-            <button className="levelToggle" onClick={() => toggleLevel(5)}>N5</button>
+            <label>
+                <input type="checkbox" onChange={() => toggleLevel(2)}></input>
+                <span className="toggle">N2</span>
+            </label>
+            <label>
+                <input type="checkbox" onChange={() => toggleLevel(3)}></input>
+                <span className="toggle">N3</span>
+            </label>
+            <label>
+                <input type="checkbox" onChange={() => toggleLevel(4)}></input>
+                <span className="toggle">N4</span>
+            </label>
+            <label>
+                <input type="checkbox" onChange={() => toggleLevel(5)}></input>
+                <span className="toggle">N5</span>
+            </label>
 
             <button onClick={() => fetchWordsFromChosenLevels(levels)}>start!</button>
         </>

@@ -10,17 +10,19 @@
   text-align: center;
 }
 
-.toggle input {
+label input {
   height: 0;
   opacity: 0;
   width: 0;
 }
 
+/*wip: source comparison. checking the difference between on and off through checked*/
 /*it is essentially the color switch that is only remaining*/
-.toggle + input:checked {
+input:checked + .toggle {
   background-color: white;
 }
 
+/*so confused what i was using this for LMAO*/
 #levelToggle {
   font-family: var(--sans);
   width: 50px;
