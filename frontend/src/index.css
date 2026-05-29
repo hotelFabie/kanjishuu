@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
 
+/*matches root document, so it would be ideal to use this instead, having some sort of commons across the whole application.*/
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -32,7 +33,11 @@
   }
 }
 
-/*presuming this is the area where these var():s are declared.*/
+/*
+NOT QUITE SURE YET IF I'LL USE THIS.
+WHAT DOES :root INDICATE?
+*/
+/*
 @media (prefers-color-scheme: dark) {
   :root {
     --text: #9ca3af;
@@ -52,6 +57,7 @@
     filter: invert(1) brightness(2);
   }
 }
+  */
 
 #root {
   width: 1126px;
@@ -65,28 +71,29 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  background-color: #040052;
+/*
+  may probably not need these down in body, because we can fix it above in root: 
   align-items: center;
   display: flex;
+*/
+
+body {
+  margin: 0;
+  background-color: #f3ff48;
 }
 
-/*i need some more personal customization here.
-interesting that you can do like &:hover within this.
-it could be nice in order to do an animation?
-
-for some reason, the buttons are moved to the side.
+/*
+possible to: "&:hover".
 */
+
 button {
-  font-size: 16px;
-  line-height: 135%;
-  color: var(--text-h);
   border-radius: 12px;
-  background: var(--accent-bg);
-  border: 1px solid var(--accent-border);
-  padding: 6px 12px;
+  border-color: #3f3f37;
+  background: #3f3f37;
+  color: #f3ff48;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
   transition: box-shadow 0.3s;
   width: 20%;
 }
@@ -94,7 +101,7 @@ button {
 /*could be something else*/
 h1,
 h2 {
-  color: #f2ff00;
+  color: #3f3f37;
   font-family: var(--heading);
   font-weight: 500;
 }
@@ -120,7 +127,7 @@ h2 {
 
 /*can probably be changed*/
 h3 {
-  color: #f2ff00;
+  color: #5d6059;
 }
 
 p {

@@ -25,28 +25,30 @@ export default function ButtonArea({levels, setLevels, fetchWordsFromChosenLevel
     /*wip: adjust the lower button, also apply nicer styling*/
     return (
         <>
-            <label>
-                <input type="checkbox" onChange={() => toggleLevel(1)}></input>
-                <span className="toggle">N1</span>
-            </label>
-            <label>
-                <input type="checkbox" onChange={() => toggleLevel(2)}></input>
-                <span className="toggle">N2</span>
-            </label>
-            <label>
-                <input type="checkbox" onChange={() => toggleLevel(3)}></input>
-                <span className="toggle">N3</span>
-            </label>
-            <label>
-                <input type="checkbox" onChange={() => toggleLevel(4)}></input>
-                <span className="toggle">N4</span>
-            </label>
-            <label>
-                <input type="checkbox" onChange={() => toggleLevel(5)}></input>
-                <span className="toggle">N5</span>
-            </label>
+            <div className="button-area">
+                <label>
+                    <input type="checkbox" onChange={() => toggleLevel(1)}></input>
+                    <span className="toggle">N1</span>
+                </label>
+                <label>
+                    <input type="checkbox" onChange={() => toggleLevel(2)}></input>
+                    <span className={"toggle n2"}>N2</span>
+                </label>
+                <label>
+                    <input type="checkbox" onChange={() => toggleLevel(3)}></input>
+                    <span className="toggle n3">N3</span>
+                </label>
+                <label>
+                    <input type="checkbox" onChange={() => toggleLevel(4)}></input>
+                    <span className="toggle">N4</span>
+                </label>
+                <label>
+                    <input type="checkbox" onChange={() => toggleLevel(5)}></input>
+                    <span className="toggle">N5</span>
+                </label>
+            </div>
 
-            <button onClick={() => fetchWordsFromChosenLevels(levels)}>start!</button>
+            <button className="start" onClick={() => fetchWordsFromChosenLevels(levels)}>start!</button>
         </>
     );
 
