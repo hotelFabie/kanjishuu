@@ -23,7 +23,8 @@ let allWords : Word[] = [];
 
 function App() {
   const [words, setWords] = useState<Word[]>([]); 
-  const [levels, setLevels] = useState<number[]>([5]); 
+  const [levels, setLevels] = useState<number[]>([]); 
+  //const [levels, setLevels] = useState<number[]>([5])
 
   //possibly: further logging if so needed.
   //dealing with errors?

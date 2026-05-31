@@ -13,7 +13,7 @@
 }
 
 .toggle:hover {
-  color: #F3FF48;
+  color: #b1b1b1;
   background-color: #3f3f37;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
@@ -26,33 +26,45 @@ label input {
 
 /*wip: source comparison. checking the difference between on and off through checked*/
 /*it is essentially the color switch that is only remaining*/
+
+
+/*prollay delete lmao*/
+/*
 input:checked + .toggle {
   background-color: #f2ff00;
 }
+*/
 
 input:checked + .toggle:hover {
-  background-color: #ac992c;
+  background-color: #3f3f37;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
 
 /*all of them need a box shadow of sorts.*/
-#n1 {
-  color: #f2ff00;
+input:checked + .n1 {
+  box-shadow: 0px 10px 0 #ff008c;
+  color: #ff008c;
 }
 
-#n2 {
-  color: #805e73;
+input:checked + .n2 {
+  box-shadow: 0px 10px 0 #1900ff;
+  color: #1900ff;
 }
 
-#n3 {
-  color: #4e4d5c;
+input:checked + .n3 {
+  box-shadow: 0px 10px 0 #00ff55;
+  color: #00ff55;
 }
 
-#n4 {
-  color: #f2ff00;
+input:checked + .n4 {
+  box-shadow: 0px 10px 0 #ffbb00;
+  color: #ffbb00;
 }
 
-#n5 {
-  color: #f2ff00;
+/*could maybe replace it with: --box-shadow-color: #00eeff;*/
+input:checked + .n5 {
+  box-shadow: 0px 10px 0 #00eeff;
+  color: #00eeff;
 }
 
 /*so confused what i was using this for LMAO -->*/

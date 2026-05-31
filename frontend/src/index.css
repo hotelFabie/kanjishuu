@@ -79,18 +79,19 @@ WHAT DOES :root INDICATE?
 
 body {
   margin: 0;
-  background-color: #f3ff48;
+  background-color: #0f0f0f;
 }
 
 /*
 possible to: "&:hover".
 */
 
+/*THIS LAME DEFAULT BORDER IS RUINING EVERYTHIIIIIIIIIIIIIIIING XD*/
 button {
   border-radius: 12px;
-  border-color: #3f3f37;
-  background: #3f3f37;
-  color: #f3ff48;
+  border-color: #8d8d81;
+  background: #8d8d81;
+  color: #0f0f0f;
   cursor: pointer;
   font-weight: bold;
   font-size: 16px;

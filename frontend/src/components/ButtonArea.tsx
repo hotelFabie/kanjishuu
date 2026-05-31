@@ -28,23 +28,23 @@ export default function ButtonArea({levels, setLevels, fetchWordsFromChosenLevel
             <div className="button-area">
                 <label>
                     <input type="checkbox" onChange={() => toggleLevel(1)}></input>
-                    <span className="toggle">N1</span>
+                    <span className={[`toggle`, `n1`].join(' ')}>N1</span>
                 </label>
                 <label>
                     <input type="checkbox" onChange={() => toggleLevel(2)}></input>
-                    <span className={"toggle n2"}>N2</span>
+                    <span className={[`toggle`, `n2`].join(' ')}>N2</span>
                 </label>
                 <label>
                     <input type="checkbox" onChange={() => toggleLevel(3)}></input>
-                    <span className="toggle n3">N3</span>
+                    <span className={[`toggle`, `n3`].join(' ')}>N3</span>
                 </label>
                 <label>
                     <input type="checkbox" onChange={() => toggleLevel(4)}></input>
-                    <span className="toggle">N4</span>
+                    <span className={[`toggle`, `n4`].join(' ')}>N4</span>
                 </label>
                 <label>
                     <input type="checkbox" onChange={() => toggleLevel(5)}></input>
-                    <span className="toggle">N5</span>
+                    <span className={[`toggle`, `n5`].join(' ')}>N5</span>
                 </label>
             </div>
 
