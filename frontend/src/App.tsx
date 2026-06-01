@@ -2,6 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import Menu from './components/Menu.tsx';
 import ButtonArea from './components/ButtonArea.tsx';
+/*wip: move the components above into their separate pages, and instead import each page.*/
+/*import { BrowserRouter/HashRouter as Router, Routes, Route } from 'react-router-dom';*/
 
 type ResponseData = {
   limit : number;
