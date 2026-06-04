@@ -88,13 +88,15 @@ possible to: "&:hover".
 
 /*THIS LAME DEFAULT BORDER IS RUINING EVERYTHIIIIIIIIIIIIIIIING XD*/
 button {
+  border: none;
   border-radius: 12px;
-  border-color: #8d8d81;
   background: #8d8d81;
   color: #0f0f0f;
   cursor: pointer;
   font-weight: bold;
   font-size: 16px;
+  margin: auto; /*key for centering. not sure why yet.*/
+  padding: 0.5em;
   transition: box-shadow 0.3s;
   width: 20%;
 }
@@ -134,3 +136,5 @@ h3 {
 p {
   margin: 0;
 }
+
+/*switch to a better measurement than px; make it more relative.*/

@@ -23,7 +23,7 @@ type Word = {
 let allWords : Word[] = [];
 
 export function SelectionPage() {
-  const [words, setWords] = useState<Word[]>([]); //gotta send these words along. 
+  const [words, setWords] = useState<Word[]>([]); //should highly likely empty this. 
   const [levels, setLevels] = useState<number[]>([]); 
 
   //i put this outside before, and it became an issue, huh...
@@ -32,7 +32,6 @@ export function SelectionPage() {
   //possibly: further logging if so needed.
   //dealing with errors?
   function fetchWordsFromChosenLevels(chosenLevels: number[]) {
-    //does not seem to work as i hoped for it to do.
     if (chosenLevels.length === 0){
         console.log("no levels were chosen. nothing was fetched.");
         //provide something useful worth saying.
@@ -40,9 +39,10 @@ export function SelectionPage() {
         return;
     }
 
+    //not sure if random allows for multiple words to be fetched yet.
     console.log("Chosen levels:", chosenLevels);
     chosenLevels.forEach(level => {
-      fetch(`https://jlpt-vocab-api.vercel.app/api/words?level=${level}`)
+      fetch(`https://jlpt-vocab-api.vercel.app/api/words/random?level=${level}&offset=20&limit=10`)
         .then(response => response.json())
         .then((data: ResponseData) => {
           console.log("Response from API: ", data);
@@ -58,9 +58,6 @@ export function SelectionPage() {
         <>
           <Menu />
           <ButtonArea levels={levels} setLevels={setLevels} fetchWordsFromChosenLevels={fetchWordsFromChosenLevels} />
-          {words.map((word : any, index) => (
-          <p key={index}>{word.word}</p>
-          ))}
         </>
     )
 }
