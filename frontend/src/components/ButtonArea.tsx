@@ -1,7 +1,7 @@
 type ButtonAreaProps = {
     levels : number[];
     setLevels: (levels: number[]) => void;
-    fetchWordsFromChosenLevels: (chosenLevels: number[]) => void;
+    fetchWordsFromChosenLevels: (levels: number[]) => void; //easier to do the navigation where we have the level, instead of needing to pass everything.
 }
 
 export default function ButtonArea({levels, setLevels, fetchWordsFromChosenLevels} : ButtonAreaProps) {
@@ -51,5 +51,5 @@ export default function ButtonArea({levels, setLevels, fetchWordsFromChosenLevel
             <button className="start" onClick={() => fetchWordsFromChosenLevels(levels)}>start!</button>
         </>
     );
-
+    /*pass these values into PracticePage, presuming with the "navigate" function*/
 }

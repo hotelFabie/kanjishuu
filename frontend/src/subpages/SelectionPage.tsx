@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Menu from '../components/Menu.tsx';
 import ButtonArea from '../components/ButtonArea.tsx';
+import { useNavigate } from 'react-router';
 
 type ResponseData = {
   limit : number;
@@ -21,16 +22,24 @@ type Word = {
 //arguable if i should store this outside.
 let allWords : Word[] = [];
 
-
 export function SelectionPage() {
-    // it should 100% be moved in here. 
-  const [words, setWords] = useState<Word[]>([]); 
+  const [words, setWords] = useState<Word[]>([]); //gotta send these words along. 
   const [levels, setLevels] = useState<number[]>([]); 
-  //const [levels, setLevels] = useState<number[]>([5])
+
+  //i put this outside before, and it became an issue, huh...
+  const navigate = useNavigate();
 
   //possibly: further logging if so needed.
   //dealing with errors?
   function fetchWordsFromChosenLevels(chosenLevels: number[]) {
+    //does not seem to work as i hoped for it to do.
+    if (chosenLevels.length === 0){
+        console.log("no levels were chosen. nothing was fetched.");
+        //provide something useful worth saying.
+        //a popup exactly below the header.
+        return;
+    }
+
     console.log("Chosen levels:", chosenLevels);
     chosenLevels.forEach(level => {
       fetch(`https://jlpt-vocab-api.vercel.app/api/words?level=${level}`)
@@ -41,15 +50,17 @@ export function SelectionPage() {
           setWords(allWords);
         })
     })
+
+    navigate("/practice", { state: { allWords } }); //is this a safe practice?
   }
 
     return (
         <>
-        <Menu />
-        <ButtonArea levels={levels} setLevels={setLevels} fetchWordsFromChosenLevels={fetchWordsFromChosenLevels} />
-            {words.map((word : any, index) => (
-            <p key={index}>{word.word}</p>
-            ))}
+          <Menu />
+          <ButtonArea levels={levels} setLevels={setLevels} fetchWordsFromChosenLevels={fetchWordsFromChosenLevels} />
+          {words.map((word : any, index) => (
+          <p key={index}>{word.word}</p>
+          ))}
         </>
     )
 }

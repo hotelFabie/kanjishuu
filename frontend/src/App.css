@@ -24,17 +24,6 @@ label input {
   width: 0;
 }
 
-/*wip: source comparison. checking the difference between on and off through checked*/
-/*it is essentially the color switch that is only remaining*/
-
-
-/*prollay delete lmao*/
-/*
-input:checked + .toggle {
-  background-color: #f2ff00;
-}
-*/
-
 input:checked + .toggle:hover {
   background-color: #3f3f37;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
@@ -42,46 +31,30 @@ input:checked + .toggle:hover {
 
 /*all of them need a box shadow of sorts.*/
 input:checked + .n1 {
-  box-shadow: 0px 10px 0 #ff008c;
-  color: #ff008c;
+  box-shadow: 0px 10px 0 #8e6c88;
+  color: #8e6c88;
 }
 
 input:checked + .n2 {
-  box-shadow: 0px 10px 0 #1900ff;
-  color: #1900ff;
+  box-shadow: 0px 10px 0 #d4aa7d;
+  color: #d4aa7d;
 }
 
 input:checked + .n3 {
-  box-shadow: 0px 10px 0 #00ff55;
-  color: #00ff55;
+  box-shadow: 0px 10px 0 #efd09e;
+  color: #efd09e;
 }
 
 input:checked + .n4 {
-  box-shadow: 0px 10px 0 #ffbb00;
-  color: #ffbb00;
+  box-shadow: 0px 10px 0 #d2d8b3;
+  color: #d2d8b3;
 }
 
 /*could maybe replace it with: --box-shadow-color: #00eeff;*/
 input:checked + .n5 {
-  box-shadow: 0px 10px 0 #00eeff;
-  color: #00eeff;
+  box-shadow: 0px 10px 0 #90a9b7;
+  color: #90a9b7;
 }
 
-/*so confused what i was using this for LMAO -->*/
-/*
-#levelToggle {
-  font-family: var(--sans);
-  width: 50px;
-  height: 25px;
-  background: #bbb8ff;
-  border-radius: 10px;
-  color: #040052;
-  content: ''; 
-  transition: ease-in-out 0.3s;
-  padding: 10px;
-}
-*/
-
-/*wip: add nice hover effect over both checked and normal.
-can probably add :hover within the actual buttons.
-also, apply shadows to the buttons, instead of having borders which would ruin the appearance.*/
+/*wip: adjust to be responsive.
+as such, keeping everything fairly simple until then.*/

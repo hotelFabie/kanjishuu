@@ -1,8 +1,20 @@
+import { useLocation } from "react-router";
+
+
 export function PracticePage() {
-    // it should 100% be moved in here. 
+    
+    const location = useLocation();
+    console.log("this was retrieved from the selection page: ",location.state.allWords);
+
     return (
+        //word or Word?
         <>
-            
+            {location.state.allWords.map((word: any) => (
+                <p>
+                    {word.word} 
+                </p>
+            ))}
+
         </>
     );
 }
