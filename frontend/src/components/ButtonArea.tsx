@@ -1,12 +1,12 @@
 type ButtonAreaProps = {
     levels : number[];
     setLevels: (levels: number[]) => void;
-    fetchWordsFromChosenLevels: (levels: number[]) => void; //easier to do the navigation where we have the level, instead of needing to pass everything.
+    someFunction: (levels: number[]) => void; //wip: rename the function.
 }
 
-export default function ButtonArea({levels, setLevels, fetchWordsFromChosenLevels} : ButtonAreaProps) {
+export default function ButtonArea({levels, setLevels, someFunction} : ButtonAreaProps) {
 
-    //spreading the array, or filtering it. [BETTER COMMENT INCOMING]
+    //wip: useful comment.
     function toggleLevel(level: number) {
         if (levels.includes(level)) {
             setLevels(levels.filter(l => l !== level));
@@ -14,15 +14,9 @@ export default function ButtonArea({levels, setLevels, fetchWordsFromChosenLevel
         } else {
             setLevels([...levels, level]);
             console.log(`button pressed: level ${level} turned on.`);
-        }
-        
+        }    
     }
 
-    /*it renders from top to bottom, so the <span> of course needs to come after the input so it lands on top.*/
-    /*label, with the text being represented through <span> (a generic, it actually takes it as an acceptable alternative),
-    so that we can customize it later on.*/
-
-    /*wip: adjust the lower button, also apply nicer styling*/
     return (
         <>
             <div className="button-area">
@@ -48,8 +42,7 @@ export default function ButtonArea({levels, setLevels, fetchWordsFromChosenLevel
                 </label>
             </div>
 
-            <button className="start" onClick={() => fetchWordsFromChosenLevels(levels)}>start!</button>
+            <button className="start" onClick={() => someFunction(levels)}>start!</button>
         </>
     );
-    /*pass these values into PracticePage, presuming with the "navigate" function*/
 }

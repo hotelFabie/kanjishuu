@@ -4,60 +4,24 @@ import Menu from '../components/Menu.tsx';
 import ButtonArea from '../components/ButtonArea.tsx';
 import { useNavigate } from 'react-router';
 
-type ResponseData = {
-  limit : number;
-  offset : number;
-  total : number;
-  words : Word[];
-}
-
-type Word = {
-  word : string;
-  meaning: string;
-  furigana : string;
-  romaji : string;
-  level : number;
-}
-
-//arguable if i should store this outside.
-let allWords : Word[] = [];
-
 export function SelectionPage() {
-  const [words, setWords] = useState<Word[]>([]); //should highly likely empty this. 
-  const [levels, setLevels] = useState<number[]>([]); 
+  const [levels, setLevels] = useState<number[]>([]);
 
-  //i put this outside before, and it became an issue, huh...
   const navigate = useNavigate();
 
-  //possibly: further logging if so needed.
-  //dealing with errors?
-  function fetchWordsFromChosenLevels(chosenLevels: number[]) {
-    if (chosenLevels.length === 0){
-        console.log("no levels were chosen. nothing was fetched.");
-        //provide something useful worth saying.
-        //a popup exactly below the header.
-        return;
+  //will do a redirection of sorts, only if this array isn't empty.
+  function someFunction(levels: number[]) {
+    if (levels.length > 0) {
+      navigate("/practice", { state: { levels } }); //is this a safe practice?
+    } else {
+      //wip: produce the error message.
     }
-
-    //not sure if random allows for multiple words to be fetched yet.
-    console.log("Chosen levels:", chosenLevels);
-    chosenLevels.forEach(level => {
-      fetch(`https://jlpt-vocab-api.vercel.app/api/words/random?level=${level}&offset=20&limit=10`)
-        .then(response => response.json())
-        .then((data: ResponseData) => {
-          console.log("Response from API: ", data);
-          allWords = allWords.concat(data.words); 
-          setWords(allWords);
-        })
-    })
-
-    navigate("/practice", { state: { allWords } }); //is this a safe practice?
   }
 
-    return (
-        <>
-          <Menu />
-          <ButtonArea levels={levels} setLevels={setLevels} fetchWordsFromChosenLevels={fetchWordsFromChosenLevels} />
-        </>
-    )
+  return (
+    <>
+      <Menu />
+      <ButtonArea levels={levels} setLevels={setLevels} someFunction={someFunction} />
+    </>
+  )
 }
