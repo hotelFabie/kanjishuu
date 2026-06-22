@@ -56,7 +56,8 @@ input:checked + .n5 {
   color: #90a9b7;
 }
 
-/*wip: adjust to be responsive.
-as such, keeping everything fairly simple until then.*/
+input[type=text] {
+  border-radius: 1em;
+}
 
-/*basically intending to add the */
+/*wip: adjust to be responsive.*/

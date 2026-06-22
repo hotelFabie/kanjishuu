@@ -1,5 +1,5 @@
 import { useLocation } from "react-router";
-import { useState, useEffect } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 //wip: removal or update!!!
 /*
@@ -20,8 +20,9 @@ type Word = {
 }
 
 export function PracticePage() {
+    const textInput = useRef<HTMLInputElement>(null);
+
     const [words, setWords] = useState<Word[]>([]); //not using "words" yet.
-    const [text, setText] = useState<string>(""); //maybe does not need that specification?
 
     const location = useLocation();
     const chosenLevels = location.state.levels;
@@ -40,6 +41,7 @@ export function PracticePage() {
                 .then((data: Word[]) => {
                     console.log("Response from API: ", data);
                     
+                    //wondering if we should make this a function for the sake of readability, not sure...
                     //for the moment, we'll just select 10, and that will suffice.
                     for (let i : number = 0; i < 10; i++){
                         let randomIndex = Math.floor(Math.random() * data.length);
@@ -56,27 +58,21 @@ export function PracticePage() {
             
     }, [chosenLevels]);
 
-    /*romaji*/
-    /*https://stackoverflow.com/questions/41764061/adding-text-to-an-existing-text-element-in-javascript-via-dom*/
-    /*styled classes*/
-    /*they will probably need a variable or so, so their text can be updated*/
-    
-    
-    //would otherwise typically need lookup to find these specific characters.
-    //or, should it be 'char'?
-    //onClick only wanted to take undefined as an acceptable value.
-
-    //https://www.reddit.com/r/reactjs/comments/t0qt4i/i_cant_for_the_life_of_me_figure_out_why_i_keep/
-
-    function addChouonpuLetter(letter : string) : undefined {
-        setText(text + letter);
+      
+    //<char instead? not sure...>
+    //useRef, because passing like 'value={...}' will make the content 
+    //impossible for the user to erase. 
+    function addChouonpuLetter(letter : string) : void {
+        if (textInput.current !== null) {
+            textInput.current.value += letter;
+            textInput.current.focus();
+        }
     }
 
-    /*then we basically add a function that inserts that letter as an input*/
-    //okay, so i really need to understand if it is something like are direct calls without the lambda function
     return (
         <>
-            <input type="text" value={text} title="romaji"></input>
+            <input type="text" title="write corresponding romaji here..." ref={textInput}></input>
+            <p>...</p>
             <div> 
                 <button onClick={() => addChouonpuLetter("ā")}>ā</button>
                 <button onClick={() => addChouonpuLetter("ī")}>ī</button>
@@ -91,5 +87,4 @@ export function PracticePage() {
             </div>
         </>
     )
-    /*it is highly likely that it does not output anything because we do not have "words" in the 'all' resource.*/
 }
