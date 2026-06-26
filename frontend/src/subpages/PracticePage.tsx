@@ -11,17 +11,19 @@ type ResponseData = {
 }
 */
 
-/*would also need a boolean*/
-type Word = {
-  //data fetched from api
+//data fetched from api
+type ApiData = {
   word : string;
   meaning: string;
   furigana : string;
   romaji : string;
   level : number;
 
-  //custom data
-  isCorrectOnFirstTry : boolean;
+}
+
+//with custom data
+type Word = ApiData & {
+    isCorrectOnFirstTry : boolean;
 }
 
 export function PracticePage() {
@@ -38,26 +40,27 @@ export function PracticePage() {
             console.log("useEffect triggered.");
 
             //belonging here?
-            let allWords : Word[] = [];
+            let words : Word[] = [];
 
             chosenLevels.forEach((level : number) => {
             fetch(`https://jlpt-vocab-api.vercel.app/api/words/all?level=${level}`)
                 .then(res => res.json())
-                .then((data: Word[]) => {
+                .then((data: ApiData[]) => {
                     console.log("response from api: ", data);
                     
                     //wondering if we should make this a function for the sake of readability, not sure...
                     //for the moment, we'll just select 10, and that will suffice.
                     for (let i : number = 0; i < 10; i++){
                         let randomIndex = Math.floor(Math.random() * data.length);
+                        const selectedWord: Word = {...data[randomIndex], isCorrectOnFirstTry: true};
+                        words.push(selectedWord);
                         console.log('this is the data entry: ', data[randomIndex]);
-                        allWords.push(data[randomIndex]);
                         data.splice(randomIndex, 1); //gotta check if it works. this is just not to get duplicates.
                     }
                     
-                    console.log("all words in total: ", allWords);
+                    console.log("all words in total: ", words);
 
-                    setWords(allWords);
+                    setWords(words);
                 });
             });
             
