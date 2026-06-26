@@ -56,8 +56,17 @@ input:checked + .n5 {
   color: #90a9b7;
 }
 
+/*light up the background when activated*/
 input[type=text] {
+  background-color:#292929; /*not actual color to be used, but...*/
+  align-self: center;
+  border: none;
   border-radius: 1em;
+  width: 50%;
+  font: var(--sans);
+  text-align: center;
+  padding: 0.25em;
+  outline-style: none;
 }
 
 /*wip: adjust to be responsive.*/

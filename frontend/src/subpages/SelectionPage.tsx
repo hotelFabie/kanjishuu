@@ -58,8 +58,8 @@ export function SelectionPage() {
         </label>
       </div>
       <div>
-        <p>{hasNoLevelSelected ? "please choose a level" : "..."}</p>
-        <button className={hasNoLevelSelected ? "active" : ""} onClick={() => { redirectToPractice(levels) }} onAnimationEnd={() => { setHasNoLevelSelected(false) }}>start!</button>
+        <p className={hasNoLevelSelected ? "visiblewarning" : "hiddenwarning"}>choose a level first</p>
+        <button onClick={() => { redirectToPractice(levels) }} onAnimationEnd={() => { setHasNoLevelSelected(false) }}>start!</button>
       </div>
     </>
   )

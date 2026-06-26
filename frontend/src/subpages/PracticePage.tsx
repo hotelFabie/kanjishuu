@@ -11,12 +11,17 @@ type ResponseData = {
 }
 */
 
+/*would also need a boolean*/
 type Word = {
+  //data fetched from api
   word : string;
   meaning: string;
   furigana : string;
   romaji : string;
   level : number;
+
+  //custom data
+  isCorrectOnFirstTry : boolean;
 }
 
 export function PracticePage() {
@@ -39,7 +44,7 @@ export function PracticePage() {
             fetch(`https://jlpt-vocab-api.vercel.app/api/words/all?level=${level}`)
                 .then(res => res.json())
                 .then((data: Word[]) => {
-                    console.log("Response from API: ", data);
+                    console.log("response from api: ", data);
                     
                     //wondering if we should make this a function for the sake of readability, not sure...
                     //for the moment, we'll just select 10, and that will suffice.
@@ -50,7 +55,7 @@ export function PracticePage() {
                         data.splice(randomIndex, 1); //gotta check if it works. this is just not to get duplicates.
                     }
                     
-                    console.log("THIS. is... :", allWords);
+                    console.log("all words in total: ", allWords);
 
                     setWords(allWords);
                 });
@@ -69,10 +74,16 @@ export function PracticePage() {
         }
     }
 
+    /*should be something here.
+    it should be a randomized word, we basically pop it out of the array.
+    store it in a variable, so that we can use it as the current value.
+    using "enter" as the input. 
+    input type="text" will get the onChange, to say the least.
+    */
     return (
         <>
+            
             <input type="text" title="write corresponding romaji here..." ref={textInput}></input>
-            <p>...</p>
             <div> 
                 <button onClick={() => addChouonpuLetter("ā")}>ā</button>
                 <button onClick={() => addChouonpuLetter("ī")}>ī</button>
@@ -80,11 +91,10 @@ export function PracticePage() {
                 <button onClick={() => addChouonpuLetter("ē")}>ē</button>
                 <button onClick={() => addChouonpuLetter("ō")}>ō</button>
             </div>
-
-            <div>
-                <p style={{color: 'green'}}>0</p>
-                <p style={{color: 'red'}}>0</p>
-            </div>
         </>
     )
+    /*
+        <p style={{color: 'green'}}>0</p>
+        <p style={{color: 'red'}}>0</p>
+    */
 }
