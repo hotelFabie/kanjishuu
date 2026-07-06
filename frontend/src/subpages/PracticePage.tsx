@@ -38,30 +38,6 @@ export function PracticePage() {
     
     console.log("retrieved levels: ", chosenLevels);
 
-    /*
-        chosenLevels.forEach((level : number) => {
-        fetch(`https://jlpt-vocab-api.vercel.app/api/words/all?level=${level}`)
-            .then(res => res.json())
-            .then((data: ApiData[]) => {
-                console.log("response from api: ", data);
-                
-                //wondering if we should make this a function for the sake of readability, not sure...
-                //for the moment, we'll just select 10, and that will suffice.
-                for (let i : number = 0; i < 10; i++){
-                    let randomIndex = Math.floor(Math.random() * data.length);
-                    const selectedWord: Card = {...data[randomIndex], isCorrectOnFirstTry: true};
-                    cards.push(selectedWord);
-                    console.log('this is the data entry: ', data[randomIndex]);
-                    data.splice(randomIndex, 1); //gotta check if it works. this is just not to get duplicates.
-                }
-                
-                console.log("all cards in total: ", cards);
-
-                setCards(cards);
-            });
-        });
-    */
-
     //this is kind of dangerous, because we are using cards.push, not the setter.
     //this should have something that is temporary, 
     function retrieveRandomCards(data: ApiData[]) : Card[] {
@@ -97,34 +73,10 @@ export function PracticePage() {
             //this may be a bit ugly...
             const cards : Card[] = responses.flatMap((data: ApiData[]) => retrieveRandomCards(data)); //use the function here.
         
-
             setCards(cards);
         }
 
-            loadCards();    
-        /*
-        chosenLevels.forEach((level : number) => {
-        fetch(`https://jlpt-vocab-api.vercel.app/api/words/all?level=${level}`)
-            .then(res => res.json())
-            .then((data: ApiData[]) => {
-                console.log("response from api: ", data);
-                
-                //wondering if we should make this a function for the sake of readability, not sure...
-                //for the moment, we'll just select 10, and that will suffice.
-                for (let i : number = 0; i < 10; i++){
-                    let randomIndex = Math.floor(Math.random() * data.length);
-                    const selectedWord: Card = {...data[randomIndex], isCorrectOnFirstTry: true};
-                    cards.push(selectedWord);
-                    console.log('this is the data entry: ', data[randomIndex]);
-                    data.splice(randomIndex, 1); //gotta check if it works. this is just not to get duplicates.
-                }
-                
-                console.log("all cards in total: ", cards);
-
-                setCards(cards);
-            });
-        });
-        */
+        loadCards();    
     }, [chosenLevels]);
 
 
@@ -139,8 +91,12 @@ export function PracticePage() {
     }
 
     //necessary to have the "React."? maybe possible to retrieve this instead?
-    const keyDown = (e : React.KeyboardEventHandler<HTMLInputElement>) => {
-        
+    const keyDown = (e : React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.currentTarget.value === cards[0].romaji) {
+            cards.shift(); //just trying, not sure how free we can do this since we probably should use the setCards? otherwise what is the point?
+            console.log("Correct!");
+        }
+
         //pseudocode:
         /* 
             convert all letters into small letters
@@ -155,9 +111,10 @@ export function PracticePage() {
         */
     }
 
+    //<p>{cards[0].word}, {cards[0].romaji}</p>
     return (
         <>
-            <p>{cards[0].word}, {cards[0].romaji}</p>
+            <p>{cards[0]?.word}, {cards[0]?.romaji}</p>
             <input type="text" title="write corresponding romaji here..." ref={textInput} onKeyDown={keyDown}></input>
             <div> 
                 <button onClick={() => addChouonpuLetter("ā")}>ā</button>
