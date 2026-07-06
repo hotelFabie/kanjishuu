@@ -1,7 +1,7 @@
 //wip: should contain the ButtonArea.
 import { useState } from 'react'
 import Menu from '../components/Menu.tsx';
-//import ButtonArea from '../components/ButtonArea.tsx';
+import Footer from '../components/Footer.tsx';
 import { useNavigate } from 'react-router';
 
 export function SelectionPage() {
@@ -61,6 +61,7 @@ export function SelectionPage() {
         <p className={hasNoLevelSelected ? "visiblewarning" : "hiddenwarning"}>choose a level first</p>
         <button onClick={() => { redirectToPractice(levels) }} onAnimationEnd={() => { setHasNoLevelSelected(false) }}>start!</button>
       </div>
+      <Footer />
     </>
   )
 }
