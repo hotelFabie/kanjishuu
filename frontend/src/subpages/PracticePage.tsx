@@ -93,37 +93,30 @@ export function PracticePage() {
     //necessary to have the "React."? maybe possible to retrieve this instead?
     //https://stackoverflow.com/questions/38096687/how-can-i-remove-the-first-element-of-an-array-and-return-the-rest
     const keyDown = (e : React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key !== "Enter") {
+            return;
+        }   
+        
+        //perhaps that we save and convert the value to small letters here?
+
         if (e.currentTarget.value === cards[0].romaji) {
             const [, ...remainingCards] = cards;
             setCards(remainingCards);
             console.log("The answer given by the user was correct!");
             e.currentTarget.value = ""; //should be done with a state setter, however.
         } else {
-            //oh, this is kind of bad, it will always do this now.
+            //tell the user how it actually should be spelled.
             const [firstCard, ...remainingCards] = cards;
             remainingCards.push(firstCard);
             setCards(remainingCards);
             e.currentTarget.value = ""; //this will be done regardless
         }
-
-        //pseudocode:
-        /* 
-            convert all letters into small letters
-            if [textInput's value] === card[0].romaji then
-                correctAtFirstAttempt === "true"
-                remove(card[0])
-            else 
-                cards.pushToEnd(card[0])   
-                correctAtFirstAttempt === "false"
-                ^set^ 
-                tell user the real spelling
-        */
     }
 
     //would be better to simply say something like "loading"
     //redirect when all the cards have been iterated through.
     //most likely that we cannot say "cards.length === 0" immediately,
-    //because 
+    //because...
     return (
         <>
             <p>{cards[0]?.word}, {cards[0]?.romaji}</p>
