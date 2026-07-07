@@ -91,10 +91,19 @@ export function PracticePage() {
     }
 
     //necessary to have the "React."? maybe possible to retrieve this instead?
+    //https://stackoverflow.com/questions/38096687/how-can-i-remove-the-first-element-of-an-array-and-return-the-rest
     const keyDown = (e : React.KeyboardEvent<HTMLInputElement>) => {
         if (e.currentTarget.value === cards[0].romaji) {
-            cards.shift(); //just trying, not sure how free we can do this since we probably should use the setCards? otherwise what is the point?
-            console.log("Correct!");
+            const [, ...remainingCards] = cards;
+            setCards(remainingCards);
+            console.log("The answer given by the user was correct!");
+            e.currentTarget.value = ""; //should be done with a state setter, however.
+        } else {
+            //oh, this is kind of bad, it will always do this now.
+            const [firstCard, ...remainingCards] = cards;
+            remainingCards.push(firstCard);
+            setCards(remainingCards);
+            e.currentTarget.value = ""; //this will be done regardless
         }
 
         //pseudocode:
@@ -111,11 +120,14 @@ export function PracticePage() {
         */
     }
 
-    //<p>{cards[0].word}, {cards[0].romaji}</p>
+    //would be better to simply say something like "loading"
+    //redirect when all the cards have been iterated through.
+    //most likely that we cannot say "cards.length === 0" immediately,
+    //because 
     return (
         <>
             <p>{cards[0]?.word}, {cards[0]?.romaji}</p>
-            <input type="text" title="write corresponding romaji here..." ref={textInput} onKeyDown={keyDown}></input>
+            <input type="text" title="Write corresponding romaji here..." ref={textInput} onKeyDown={keyDown}></input>
             <div> 
                 <button onClick={() => addChouonpuLetter("ā")}>ā</button>
                 <button onClick={() => addChouonpuLetter("ī")}>ī</button>
