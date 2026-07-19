@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
-
 /*matches root document, so it would be ideal to use this instead, having some sort of commons across the whole application.*/
 :root {
   --text: #6b6375;
@@ -19,6 +18,8 @@
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
+  font-weight: 800;
+  font-style: normal;
   letter-spacing: 0.18px;
   color-scheme: light dark;
   color: var(--text);
@@ -99,12 +100,19 @@ button {
 h1,
 h2 {
   /*color: #e4e4e4;*/
-  background-image: linear-gradient(90deg, #e4e4e4, #4e4e4e);
+  font-size: 3em;
+
+  /*for text gradient not to be cut off.*/
+  padding-top: 0.2em;
+  padding-bottom: 0.6em;
+
+  background-image: linear-gradient(0deg, #0f0f0f 0%, #e4e4e4 50%, #0f0f0f 100%);
+
   -webkit-background-clip: text;
   background-clip: text;
+
+  -webkit-text-fill-color: transparent;
   color: transparent;
-  /*font-family: var(--heading);*/
-  /*font-weight: 500;*/
 }
 
 /*change as seen fit.*/

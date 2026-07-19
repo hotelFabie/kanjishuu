@@ -23,8 +23,8 @@ export function PracticePage() {
 
     //WIP: need to add a state to all the cards that they are accepted.
     const [cards, setCards] = useState<Card[]>([]);
-    const [isLoading, setIsLoading] = useState<Boolean>(true);
-    const isComplete : boolean = !isLoading && cards.every(card => card.hasCorrectUserAnswer === true); //
+    const [isLoading, setIsLoading] = useState<Boolean>(true); //this will probably only be necessary if....
+    const isComplete : boolean = !isLoading && cards.every(card => card.hasCorrectUserAnswer === true);
 
     const location = useLocation();
     const chosenLevels = location.state.levels;
@@ -54,17 +54,11 @@ export function PracticePage() {
         
         console.log("useEffect triggered.");
 
-        //no point in fetching if this is true.
-        if (isComplete) {
-            navigate("/review");
-            return;
-        }
-
         //this is a promise remake of what i am having under this construction.
         async function loadCards() {
             const ssCards: string | null = sessionStorage.getItem('cards');
 
-            //only do this fetch and all of the setters if so needed.
+            //No point in fetching if we already have relevant data.
             if (ssCards !== null) {
                 const cards = JSON.parse(ssCards);
                 setCards(cards);
@@ -93,6 +87,13 @@ export function PracticePage() {
 
     }, [chosenLevels]); 
 
+    useEffect(() => {
+        //no point in fetching if this is true.
+        if (isComplete) {
+            navigate("/review");
+            return;
+        }
+    });
 
     function addChouonpuLetter(letter : string) : void {
         if (textInput.current !== null) {
