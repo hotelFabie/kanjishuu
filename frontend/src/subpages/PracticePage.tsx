@@ -136,7 +136,7 @@ export function PracticePage() {
     //do it on the entire sentence.
     return (
         <>
-            <p>{cards[0]?.word}, {cards[0]?.romaji}</p>
+            <p className="currentWord">{cards[0]?.word}, {cards[0]?.romaji}</p>
             <input type="text" title="Write corresponding romaji here..." ref={textInput} onKeyDown={keyDown}></input>
             <div> 
                 <button onClick={() => addChouonpuLetter("ā")}>ā</button>
@@ -146,10 +146,7 @@ export function PracticePage() {
                 <button onClick={() => addChouonpuLetter("ō")}>ō</button>
             </div>
             <p>Remaining cards left: {cards.length}</p>
-
+            <Footer />
         </>
     )
-    /*
-    <Footer />
-    */
 }

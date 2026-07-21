@@ -31,42 +31,44 @@ input:checked + .toggle:hover {
 
 /*all of them need a box shadow of sorts.*/
 input:checked + .n1 {
-  box-shadow: 0px 10px 0 #8e6c88;
-  color: #8e6c88;
+  box-shadow: 0px 10px 0 #c65880;
+  color: #c65880;
 }
 
 input:checked + .n2 {
-  box-shadow: 0px 10px 0 #d4aa7d;
-  color: #d4aa7d;
+  box-shadow: 0px 10px 0 #d07697;
+  color: #d07697;
 }
 
 input:checked + .n3 {
-  box-shadow: 0px 10px 0 #efd09e;
-  color: #efd09e;
+  box-shadow: 0px 10px 0 #db95ae;
+  color: #db95ae;
 }
 
 input:checked + .n4 {
-  box-shadow: 0px 10px 0 #d2d8b3;
-  color: #d2d8b3;
+  box-shadow: 0px 10px 0 #e5b3c5;
+  color: #e5b3c5;
 }
 
 /*could maybe replace it with: --box-shadow-color: #00eeff;*/
 input:checked + .n5 {
-  box-shadow: 0px 10px 0 #90a9b7;
-  color: #90a9b7;
+  box-shadow: 0px 10px 0 #e5b3c5;
+  color: #e5b3c5;
 }
 
 /*light up the background when activated*/
 input[type=text] {
-  background-color:#292929; /*not actual color to be used, but...*/
   align-self: center;
+  background-color: #292929; 
   border: none;
   border-radius: 1em;
-  width: 50%;
+  box-shadow: 0.25em 0.25em 0 #0a0a0a;
   font: var(--sans);
-  text-align: center;
-  padding: 0.25em;
+  margin: 1em;
   outline-style: none;
+  padding: 0.25em;
+  text-align: center;
+  width: 50%;
 }
 
 /*wip: adjust to be responsive.*/
