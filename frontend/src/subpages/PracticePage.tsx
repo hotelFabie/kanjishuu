@@ -129,14 +129,9 @@ export function PracticePage() {
         }
     }
 
-    //would be better to simply say something like "loading"
-    //redirect when all the cards have been iterated through.
-    //most likely that we cannot say "cards.length === 0" immediately,
-    //because...
-    //do it on the entire sentence.
     return (
         <>
-            <p className="currentWord">{cards[0]?.word}, {cards[0]?.romaji}</p>
+            <p className="currentWord">{cards.length !== 0 ? cards[0]?.word + ' ' + cards[0]?.romaji : 'Loading in cards...'}</p>
             <input type="text" title="Write corresponding romaji here..." ref={textInput} onKeyDown={keyDown}></input>
             <div> 
                 <button onClick={() => addChouonpuLetter("ā")}>ā</button>
@@ -146,6 +141,7 @@ export function PracticePage() {
                 <button onClick={() => addChouonpuLetter("ō")}>ō</button>
             </div>
             <p>Remaining cards left: {cards.length}</p>
+            <button className="altStyleButton" onClick={() => navigate("/review")}>Skip to review</button>
             <Footer />
         </>
     )

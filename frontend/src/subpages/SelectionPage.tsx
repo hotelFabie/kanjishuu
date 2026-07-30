@@ -1,7 +1,9 @@
 //wip: should contain the ButtonArea.
 import { useState } from 'react'
-import Menu from '../components/Menu.tsx';
+import ButtonArea from '../components/ButtonArea.tsx';
 import Footer from '../components/Footer.tsx';
+import Menu from '../components/Menu.tsx';
+import ExistingCardsPrecaution from '../components/ExistingCardsPrecaution.tsx';
 import { useNavigate } from 'react-router';
 
 export function SelectionPage() {
@@ -21,42 +23,26 @@ export function SelectionPage() {
     }
   }
 
-      function toggleLevel(level: number) {
-        if (levels.includes(level)) {
-            setLevels(levels.filter(l => l !== level));
-            console.log(`button pressed: level ${level} turned off.`);
-        } else {
-            setLevels([...levels, level]);
-            console.log(`button pressed: level ${level} turned on.`);
-        }    
+  function toggleLevel(level: number) : void {
+    if (levels.includes(level)) {
+      setLevels(levels.filter(l => l !== level));
+      console.log(`button pressed: level ${level} turned off.`);
+    } else {
+      setLevels([...levels, level]);
+      console.log(`button pressed: level ${level} turned on.`);
     }
+  }
 
-  //see, i am basically calling it a button-area here as well - so it is readable - and that is fine.
   return (
     <>
       <Menu />
-      <div className="button-area">
-        <label>
-          <input type="checkbox" onChange={() => toggleLevel(1)}></input>
-          <span className={[`toggle`, `n1`].join(' ')}>N1</span>
-        </label>
-        <label>
-          <input type="checkbox" onChange={() => toggleLevel(2)}></input>
-          <span className={[`toggle`, `n2`].join(' ')}>N2</span>
-        </label>
-        <label>
-          <input type="checkbox" onChange={() => toggleLevel(3)}></input>
-          <span className={[`toggle`, `n3`].join(' ')}>N3</span>
-        </label>
-        <label>
-          <input type="checkbox" onChange={() => toggleLevel(4)}></input>
-          <span className={[`toggle`, `n4`].join(' ')}>N4</span>
-        </label>
-        <label>
-          <input type="checkbox" onChange={() => toggleLevel(5)}></input>
-          <span className={[`toggle`, `n5`].join(' ')}>N5</span>
-        </label>
-      </div>
+      <>
+      { sessionStorage.getItem('cards') === null
+        ? <ButtonArea toggleLevel={toggleLevel} />
+        : <ExistingCardsPrecaution />
+      }
+      </>
+
       <div>
         <p className={hasNoLevelSelected ? "visiblewarning" : "hiddenwarning"}>choose a level first</p>
         <button onClick={() => { redirectToPractice(levels) }} onAnimationEnd={() => { setHasNoLevelSelected(false) }}>start!</button>
