@@ -22,7 +22,11 @@ export function PracticePage() {
     const textInput = useRef<HTMLInputElement>(null);
 
     //WIP: need to add a state to all the cards that they are accepted.
-    const [cards, setCards] = useState<Card[]>([]);
+    const [cards, setCards] = useState<Card[]>(() => {
+        const saved = sessionStorage.getItem("cards");
+        return saved ? JSON.parse(saved) : [];
+    });
+
     const [isLoading, setIsLoading] = useState<Boolean>(true); //this will probably only be necessary if....
     const isComplete : boolean = !isLoading && cards.every(card => card.hasCorrectUserAnswer === true);
 

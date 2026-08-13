@@ -200,3 +200,11 @@ p {
   font-style: italic; /*maybe does not work for this font?*/
 }
 /*wip: switch to a better measurement than px; make it more relative.*/
+
+.h1space {
+  background-color: red;
+}
+
+.defaultStart {
+  background-color: yellow;
+}
