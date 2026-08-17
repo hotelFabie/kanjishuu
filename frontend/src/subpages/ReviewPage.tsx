@@ -1,15 +1,18 @@
+import { useLocation } from "react-router";
+import Footer from '../components/Footer.tsx';
+
 export function ReviewPage() {
-    // it should 100% be moved in here. 
-    
-    //
+    const location = useLocation(); //these will need specified types as well.
+
     return (
         <>
             <h3>REVIEW</h3>
             <div id="metafield">
-                <p>total attempts: </p>
-                <p>total review time: </p>
-                <p>cards completed on first attempt: </p>
+                <p>{'total attempts: ' + location.state.totalAttempts}</p>
+                <p>{'total review time: ' + location.state.reviewTime}</p>
+                <p>{'cards completed on first attempt: ' + location.state }</p>
             </div>
+            <Footer />
         </>
     );
 }

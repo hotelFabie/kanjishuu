@@ -21,6 +21,19 @@ type Card = ApiData & {
 export function PracticePage() {
     const textInput = useRef<HTMLInputElement>(null);
 
+    const [time, setTime] = useState<number>(0);
+    
+    //Wip;;; --will probably move this function down later on.
+    //this will need some sort of setInterval, so possibly through a
+    //useEffect kind of thing.
+    useEffect(() =>  {
+        const interval = setInterval(() => { setTime(time => time + 1)}, 1000); //this one should definitely have a type explicitly written out.
+        console.log('counted time is: ' + time);
+        return () => clearInterval(interval); //not sure if the => { } is necessary here or not.
+    });
+    //and then, we will present it for the user by doing [left: divide 60, right: modulo 60]
+    //should not be any external dependencies, right?
+
     //WIP: need to add a state to all the cards that they are accepted.
     const [cards, setCards] = useState<Card[]>(() => {
         const saved = sessionStorage.getItem("cards");
@@ -32,10 +45,11 @@ export function PracticePage() {
 
     const location = useLocation();
     const chosenLevels = location.state.levels;
+    console.log("retrieved levels: ", chosenLevels);
 
     const navigate = useNavigate();
     
-    console.log("retrieved levels: ", chosenLevels);
+    const [totalAttempts, setTotalAttempts] = useState<number>(0);
 
     //this is kind of dangerous, because we are using cards.push, not the setter.
     //this should have something that is temporary, 
@@ -94,7 +108,7 @@ export function PracticePage() {
     useEffect(() => {
         //no point in fetching if this is true.
         if (isComplete) {
-            navigate("/review");
+            navigate("/review", { state: {totalAttempts}}); //why this kind of structure?
             return;
         }
     });
@@ -131,10 +145,13 @@ export function PracticePage() {
             setCards(remainingCards);
             e.currentTarget.value = ""; //this will be done regardless
         }
+        setTotalAttempts(totalAttempts + 1);
+        console.log(totalAttempts);
     }
 
     return (
         <>
+            <p>{'[' + Math.floor(time/60) + ':' + time%60 + ']'}</p>
             <p className="currentWord">{cards.length !== 0 ? cards[0]?.word + ' ' + cards[0]?.romaji : 'Loading in cards...'}</p>
             <input type="text" title="Write corresponding romaji here..." ref={textInput} onKeyDown={keyDown}></input>
             <div> 
@@ -145,7 +162,7 @@ export function PracticePage() {
                 <button onClick={() => addChouonpuLetter("ō")}>ō</button>
             </div>
             <p>Remaining cards left: {cards.length}</p>
-            <button className="altStyleButton" onClick={() => navigate("/review")}>Skip to review</button>
+            <button className="altStyleButton" onClick={() => navigate("/review", { state: {totalAttempts}})}>Skip to review</button>
             <Footer />
         </>
     )
